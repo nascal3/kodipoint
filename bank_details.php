@@ -2,9 +2,11 @@
 <?php include 'components/session-check.php' ?> 
 <?php include 'components/landlord_check.php' ?> 
 
-<?php 
-    $user_id = mysqli_real_escape_string($conn,$_REQUEST['profile']);
-    $profile_username=$rws['username'];
+<?php
+    if (isset($_REQUEST['profile'])) {
+        $user_id = mysqli_real_escape_string($conn,$_REQUEST['profile']);
+    }
+    // $profile_username=$rws['username'];
 ?>
 <?php
     $url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
