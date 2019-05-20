@@ -1,0 +1,60 @@
+<table cellspacing="3" cellpadding="4" width="600px">
+	<tr class="top">
+		
+		<td class="title">
+			<img src="../assets/images/logo.png" style="width:121px; max-width:300px">
+		</td>
+		 <td style="text-align:right; font-size:12px; ">
+			Receipt #:  <?php echo $rowv['name']; ?><br>
+			Created:  <?php echo $today; ?><br>
+		</td>
+			   
+	</tr>
+	<tr class="information">
+	   <td><h2 style="color: #0e4645; font-weight: 300; font-size: 36px;">Receipt</h2></td>
+	   <td style="text-align:right; font-size:12px;">
+					Kodi Point<br>
+					info@kodipoint.com<br>
+					Pin No: <br>
+					VAT No: <br>
+					
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2"></td>
+	</tr>
+	<tr class="heading" bgcolor="#cccccc" >
+		<td colspan="2" style="font-weight: bold; font-size:12px; padding: 6px 10px !important;">Being Payment of</td>
+	</tr>
+	
+	<tr>
+		<td height="30px" style="font-size:12px"> <?php echo $rowv['property_name']; ?> -  <?php echo $rowv['unit_no']; ?></td>
+		<td align="right" height="30px" style="font-size:12px"> <?php echo $rowv['rent']; ?></td>
+	</tr>
+	<tr>
+		<td style="font-size:12px"><strong>Other Charges:</strong><br /> <?php echo $row['description']; ?></td>
+		<td align="right" style="font-size:12px"><?php echo $row['other_charges']; ?></td>
+	</tr>
+	<tr>
+		<td colspan="2"></td>
+	</tr>
+	<tr class="details">
+		<td height="30px" style="font-size:12px;">Mpesa Ref Number: </td>
+		<td align="right" height="30px"  style="font-size:12px;"><?php echo $trans_id; ?></td>
+	</tr>
+	<tr>
+		<td  colspan="2" height="1px" cellpadding="0" style="border-bottom:solid #f3f3f3 0.5px;"></td>
+	</tr>
+	<tr class="item last">
+		<td style="font-size:12px">Tax</td>
+		<td align="right" style="font-size:12px;"><?php echo $row['tax_rate']; ?></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td height="1px" cellpadding="0" style="border-bottom:solid #f3f3f3 0.5px;"></td>
+	</tr>
+	<tr class="total">
+		<td style="font-size:12px;">Total</td>
+		<td align="right" style="font-size:20px;"><?php echo $paid ?></td>
+	</tr>
+</table>
