@@ -2,8 +2,10 @@
 <?php include 'components/landlord_check.php' ?> 
 <?php include 'controllers/base/head.php' ?>
 
-<?php 
-    $username = mysqli_real_escape_string($conn,$_REQUEST['profile']);
+<?php
+    if (isset($_REQUEST['profile'])) {
+        $username = mysqli_real_escape_string($conn,$_REQUEST['profile']);
+    }
     $sql = "SELECT * FROM re_landlords where id='$current_user'";
     $result = mysqli_query($conn,$sql) or die(mysqli_error()); 
     $rws = mysqli_fetch_array($result);   
