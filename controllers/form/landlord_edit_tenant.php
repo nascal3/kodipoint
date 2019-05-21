@@ -1,17 +1,12 @@
 <?php 	
-$tenantid=$_REQUEST['ten'];
+$rec_id=$_REQUEST['ten'];
 
-$sql2 = "SELECT * FROM re_tenant WHERE id = '$tenantid'";
+$sql2 = "SELECT * FROM re_tenant WHERE id='$rec_id'";
 $result2 =  mysqli_query($conn,$sql2) or die(mysqli_errno());
 if(!$result2==""){			
 
-$rws = mysqli_fetch_array($result2); 
-
-$sql3 = "SELECT * FROM re_propertytenant WHERE tenant_id = '$tenantid'";
-$result3 =  mysqli_query($conn,$sql3) or die(mysqli_errno()); 
-
-$rws3 = mysqli_fetch_array($result3); 
- 
+$rws = mysqli_fetch_array($result2);
+$landlord_id = $rws['landlord_id'];
 ?>
 <form class="contactForm" action="components/landlord_update_tenant.php" method="post" autocomplete="off">
 
@@ -33,24 +28,12 @@ $rws3 = mysqli_fetch_array($result3);
 		<div class="col-md-6">
 			<label for="apartment">Select the Property/Apartment:</label><br />
 			<select name="tenantapartment">
+            <?php echo "<option value='". $rws['property_id'] ."'>" . $rws['property_name'] . "</option>"; ?>
 			<?php 
-				$sql4 = "SELECT property_id FROM re_propertytenant WHERE tenant_id = '$tenantid'";
-				$result4 =  mysqli_query($conn,$sql4) or die(mysqli_errno());
-				$rws4 = mysqli_fetch_array($result4); 
-				
-				$sql5 = "SELECT id, property_name FROM re_properties WHERE id = '$rws4[0]'";
+				$sql5 = "SELECT id, property_name FROM re_properties WHERE landlord = $landlord_id";
 				$result5 =  mysqli_query($conn,$sql5) or die(mysqli_errno());
-				$rws5 = mysqli_fetch_array($result5); 
-				
+				$rws5 = mysqli_fetch_array($result5);
 				echo "<option value='". $rws5[0] ."'>" . $rws5[1] . "</option>";
-				echo "<option>...</option>"
-			?>
-			<?php
-					$sql6 = "SELECT * FROM re_properties WHERE landlord = '$current_user'";
-					$result6 =  mysqli_query($conn,$sql6) or die(mysqli_errno());
-					while($rws6 = mysqli_fetch_array($result6)){
-					echo "<option value='". $rws6['id'] ."'>" . $rws6['property_name'] . "</option>";	
-					};
 			?>
 			</select>
 		</div>
@@ -58,10 +41,10 @@ $rws3 = mysqli_fetch_array($result3);
 	</div>
 	<div class="row">
 		<div class="col-md-6">
-			<input type="text" name="unitno"  placeholder="House/Unit number" value="<?php echo $rws3['unit_no'] ?>" />
+			<input type="text" name="unitno"  placeholder="House/Unit number" value="<?php echo $rws['unit_no'] ?>" />
 		</div>
 		<div class="col-md-6">
-			<input type="text" name="dateenter" id="dateenter"  placeholder="Start date of occupation" value="<?php echo $rws3['date_moved_in'] ?>" />
+			<input type="text" name="dateenter" id="dateenter"  placeholder="Start date of occupation" value="<?php echo $rws['move_in_date'] ?>" />
 		</div>
 	</div>
 	<button type="submit" class="submit" name="save">Save</button>&nbsp; &nbsp;<button type="button" id="delete" class="submit" name="deletetent">Delete</button>
