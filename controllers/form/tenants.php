@@ -1,7 +1,7 @@
 <?php 	
-$sql2 = "SELECT * FROM re_properties WHERE landlord = '$current_user'";
-$result2 =  mysqli_query($conn,$sql2) or die(mysqli_errno());
-if(!$result2==""){			
+    $sql2 = "SELECT * FROM re_properties WHERE landlord = '$current_user'";
+    $result2 =  mysqli_query($conn,$sql2) or die(mysqli_errno());
+    if(!$result2==""){
 ?>
 <form class="contactForm" action="components/tenant_registration.php" method="post" autocomplete="off">
 
