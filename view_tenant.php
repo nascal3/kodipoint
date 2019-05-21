@@ -3,10 +3,17 @@
 <?php include 'controllers/base/head.php' ?>
 
 <?php 
-    $tenantid = mysqli_real_escape_string($conn,$_REQUEST['ten']);
-	$sqlz = "SELECT re_tenant.name,re_tenant.email, re_tenant.tenantid, re_tenant.telephone, re_tenant.postal_address, re_tenant.avatar, re_properties.property_name, re_properties.location, re_properties.country, re_propertytenant.unit_no, re_propertytenant.date_moved_in FROM re_tenant LEFT JOIN (re_properties,re_propertytenant,re_landlords) ON re_properties.landlord = re_landlords.id AND re_propertytenant.tenant_id = re_tenant.id AND re_propertytenant.property_id = re_properties.id WHERE re_tenant.id='$tenantid'";
-    $resultz = mysqli_query($conn,$sqlz) or die(mysqli_error()); 
-	
+    $rec_id = mysqli_real_escape_string($conn,$_REQUEST['ten']);
+	$sqlz = "SELECT * FROM re_tenant WHERE id='$rec_id'";
+    $resultz = mysqli_query($conn,$sqlz) or die(mysqli_error());
+
+    function getValues($pro_id) {
+        require './_database/database.php';
+        $sqlx = "SELECT country, location FROM re_properties WHERE id='$pro_id'";
+        $res = mysqli_query($conn,$sqlx) or die(mysqli_error());
+        return $rowp = mysqli_fetch_array($res);
+    }
+
 ?>
 <?php
     $url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
@@ -41,7 +48,7 @@
 	<article>
 		<div class="row">
 			<div class="col-md-12">
-				<h3>Tenants  - View Information</h2>
+				<h3>Tenants  - View Information</h3>
 			</div>
 		</div>
 	</article>
@@ -61,10 +68,10 @@
 				Telephone No: <b><?php echo $row['telephone'] ?></b><br />
 				Postal Address: <b><?php echo $row['postal_address'] ?></b><br /><br /></p>
 				<p>Property Name: <b><?php echo $row['property_name'] ?></b><br />
-				House Number:<b><?php echo $row['unit_no'] ?></b><br />
-				Location:<b><?php echo $row['location'] ?></b><br />
-				Country:<b><?php echo $row['country'] ?></b><br />
-				Date moved in:<b><?php echo $row['date_moved_in'] ?></b></p>
+				House Number: <b><?php echo $row['unit_no'] ?></b><br />
+				Location: <b><?php echo getValues($row['property_id'])['location'] ?></b><br />
+				Country: <b><?php echo getValues($row['property_id'])['country'] ?></b><br />
+				Date moved in: <b><?php echo $row['move_in_date'] ?></b></p>
 				</p>
 			</div>
 		</div>
