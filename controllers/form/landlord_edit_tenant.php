@@ -20,7 +20,7 @@ $landlord_id = $rws['landlord_id'];
 			<input type="text" name="tenantname"  placeholder="Enter Tenant's name" value="<?php echo $rws['name']; ?>" />
 		</div>
 		<div class="col-md-6">
-			<input type="hidden" name="tentid" value="<?php echo $rws['id']; ?>" />
+			<input type="hidden" name="rec_id" value="<?php echo $rws['id']; ?>" />
 			<input type="text" name="tenantid"  placeholder="Tenant Identification Number" value="<?php echo $rws['tenantid']; ?>" />
 		</div>
 	</div>
@@ -30,11 +30,14 @@ $landlord_id = $rws['landlord_id'];
 			<select name="tenantapartment">
             <?php echo "<option value='". $rws['property_id'] ."'>" . $rws['property_name'] . "</option>"; ?>
 			<?php 
-				$sql5 = "SELECT id, property_name FROM re_properties WHERE landlord = $landlord_id";
+				$sql5 = "SELECT * FROM re_properties WHERE landlord = $landlord_id";
 				$result5 =  mysqli_query($conn,$sql5) or die(mysqli_errno());
-				$rws5 = mysqli_fetch_array($result5);
-				echo "<option value='". $rws5[0] ."'>" . $rws5[1] . "</option>";
 			?>
+            <?php
+                while($row5 = mysqli_fetch_array($result5)){
+                    echo "<option value='". $row5['id'] ."'>" . $row5['property_name'] . "</option>";
+                };
+            ?>
 			</select>
 		</div>
 		

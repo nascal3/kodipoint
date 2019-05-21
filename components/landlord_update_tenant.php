@@ -8,21 +8,24 @@
     if(isset($_REQUEST['save'])){
 		$tenantemail=$_REQUEST['tenantemail'];
         $tenantname=$_REQUEST['tenantname'];
-        $originalid=$_REQUEST['tentid'];
+        $tenantemail=$_REQUEST['tenantemail'];
+        $id=$_REQUEST['rec_id'];
         $tenantid=$_REQUEST['tenantid'];
         $apartmentid=$_REQUEST['tenantapartment'];
         $unitno=$_REQUEST['unitno'];
         $dateenter=$_REQUEST['dateenter'];
 
-			$sql="UPDATE re_tenant SET name='tenantname', email='tenantemail', tenantid='$tenantid' WHERE id='$originalid'";
-			mysqli_query($conn,$sql) or die(mysqli_error($conn));
+        $sql5 = "SELECT property_name FROM re_properties WHERE id = $apartmentid";
+        $result =  mysqli_query($conn,$sql5) or die(mysqli_errno());
+        $rws = mysqli_fetch_array($result);
+        $prop_name = $rws['property_name'];
+
+        $sql="UPDATE re_tenant SET name='$tenantname', email='$tenantemail', tenantid='$tenantid', property_id='$apartmentid', property_name='$prop_name',
+              unit_no='$unitno', move_in_date='$dateenter'  WHERE id='$id'";
+        mysqli_query($conn,$sql) or die(mysqli_error($conn));
+
 			
-			$sql1="UPDATE re_propertytenant SET property_id='$apartmentid', date_moved_in='$dateenter', unit_no='$unitno' WHERE tenant_id='$originalid'";
-			$result = mysqli_query($conn,$sql1) or die(mysqli_error($conn));
-			$row = mysqli_fetch_array($result);
-			
-			
-			header('Location: ../tenants.php?status=success');
+        header('Location: ../tenants.php?status=success');
 
 		mysqli_close($conn);
 		
