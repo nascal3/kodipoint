@@ -27,7 +27,7 @@
 		if($row==1){	
 			header('Location: ../tenants.php?status=error-tenant-exists');
 		}else{
-			$sql2="INSERT INTO re_tenant(name,email,property_id,property_name,unit_no,landlord_id,tenantid) VALUES('$tenantname','$tenantemail','$apartmentid','$property_name','$unitno','$current_user','$tenantid')";
+			$sql2="INSERT INTO re_tenant(name,email,property_id,property_name,unit_no,landlord_id,tenantid,move_in_date) VALUES('$tenantname','$tenantemail','$apartmentid','$property_name','$unitno','$current_user','$tenantid','$dateenter')";
 			mysqli_query($conn,$sql2) or die(mysqli_error($conn));
 			header('Location: ../tenants.php?status=success');
 		}
