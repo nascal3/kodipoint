@@ -54,8 +54,8 @@
 			</div>
 			<div class="col-md-5">
 			<h4>Tenants List</h4>
-			<?php 				
-				$sql2 = "SELECT * FROM re_tenant LEFT JOIN (re_properties,re_propertytenant,re_landlords) ON re_properties.landlord = re_landlords.id AND re_propertytenant.tenant_id = re_tenant.id AND re_propertytenant.property_id = re_properties.id WHERE re_landlords.id='$current_user'";
+			<?php
+				$sql2 = "SELECT * FROM re_tenant WHERE landlord_id='$current_user'";
 				$result2 =  mysqli_query($conn,$sql2) or die(mysqli_errno());
 				if(!$result2==""){
 					?>
@@ -70,7 +70,7 @@
 					</tr>
 					<?php
 					while($row = mysqli_fetch_array($result2)){
-					echo "<tr>
+					echo " <tr>
 						<td>" . $row['name'] . "</td>
 						<td>" . $row['property_name'] . "</td>
 						<td>" . $row['unit_no'] . "</td>
