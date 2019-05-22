@@ -56,7 +56,7 @@
 						<th>Pay Now</th>
 					</tr>
 					<?php 
-						$sqlx = "SELECT re_invoices.invoice_ref,re_invoices.date_issued,re_properties.property_name,re_invoices.costs,re_invoices.pay_status, re_propertytenant.unit_no FROM re_invoices LEFT JOIN (re_properties,re_propertytenant) ON re_properties.id = re_invoices.property_id AND re_invoices.tenant_id = re_propertytenant.tenant_id WHERE re_invoices.tenant_id = $current_user AND re_invoices.pay_status = 0";
+						$sqlx = "SELECT re_invoices.invoice_ref,re_invoices.date_issued,re_properties.property_name,re_invoices.costs,re_invoices.pay_status, re_tenant.unit_no FROM re_invoices LEFT JOIN (re_properties,re_tenant) ON re_properties.id = re_invoices.property_id AND re_invoices.tenant_id = re_tenant.id WHERE re_invoices.tenant_id = '$current_user' AND re_invoices.pay_status = 0";
 						$resultx = mysqli_query($conn,$sqlx) or die(mysqli_error()); 
 						
 						if(!$rowx = mysqli_num_rows($resultx) == 0){
