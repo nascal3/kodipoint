@@ -1,5 +1,14 @@
 <?php
+    ob_start();
+    session_start();
+    session_regenerate_id();
+    $new_sessionid = session_id();
 	include '../_database/database.php';
+    $current_user=$_SESSION['user_username'];
+
+    $sql1="SELECT * FROM re_tenant WHERE landlord='$current_user'";
+    $result1 = mysqli_query($conn,$sql1) or die(mysqli_error());
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +47,14 @@
 	<form action="components/getpay.php" class="contactForm" method="post" >
 		<div class="row">
 			<div class="col-md-6">
-				<input type="text" name="customerName" placeholder="Customer Name" />
+                <select name="customerName" id="prop" >
+                    <option>Customer Name...</option>
+                    <?php
+                    while($row = mysqli_fetch_array($result1)){
+
+                        echo "<option value='" . $row['id'] ."'>". $row['property_name'] ."</option>";
+                    }?>
+                </select>
 			</div>
 			<div class="col-md-6">
 				<input type="text" name="mobileNumber" placeholder="Mobile Number" />
