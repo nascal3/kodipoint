@@ -41,7 +41,7 @@
 	<article>
 		<div class="row">
 			<div class="col-md-12">
-				<h3>Invoicing</h2>
+				<h3>Invoicing</h3>
 			</div>
 		</div>
 	</article>
@@ -124,7 +124,7 @@
 		<div class="row">
 			<div class="col-md-12">
 			<?php 
-				$sql2 = "SELECT * FROM re_invoicing LEFT JOIN (re_properties,re_tenant) ON re_properties.id = re_invoicing.property_id AND re_tenant.id = re_invoicing.tenant_id  WHERE landlord_id='$current_user'";
+				$sql2 = "SELECT * FROM re_invoicing LEFT JOIN (re_properties,re_tenant) ON re_properties.id = re_invoicing.property_id AND re_tenant.id = re_invoicing.tenant_id  WHERE re_invoicing.landlord_id='$current_user'";
 				$result2 =  mysqli_query($conn,$sql2) or die(mysqli_errno());
 				if(!$result2==""){
 			?>
