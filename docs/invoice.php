@@ -3,7 +3,7 @@ include '../_database/database.php';
 	$ref = mysqli_real_escape_string($conn,$_REQUEST['invoiceref']);
 	
 if(!$ref ==""){
-	$sqlv="SELECT re_invoices.invoice_ref, re_invoices.date_issued, re_invoicing.rent, re_invoicing.tax_rate, re_invoicing.other_charges, re_invoicing.desciption, re_properties.property_name, re_invoices.costs,re_invoices.pay_status, re_propertytenant.unit_no, re_tenant.name, re_tenant.email, re_tenant.telephone, re_tenant.postal_address FROM re_invoices LEFT JOIN (re_properties,re_propertytenant, re_invoicing, re_tenant) ON re_properties.id = re_invoices.property_id AND re_invoices.tenant_id = re_propertytenant.tenant_id AND re_invoices.tenant_id = re_tenant.id AND re_invoicing.tenant_id = re_invoices.tenant_id WHERE re_invoices.invoice_ref ='$ref'";
+	$sqlv="SELECT re_invoices.invoice_ref, re_invoices.date_issued, re_invoicing.rent, re_invoicing.tax_rate, re_invoicing.other_charges, re_invoicing.desciption, re_properties.property_name, re_invoices.costs,re_invoices.pay_status, re_invoicing.unit_no, re_tenant.name, re_tenant.email, re_tenant.telephone, re_tenant.postal_address FROM re_invoices LEFT JOIN (re_properties,re_invoicing, re_tenant) ON re_properties.id = re_invoices.property_id AND re_invoices.tenant_id = re_tenant.id AND re_invoicing.tenant_id = re_invoices.tenant_id WHERE re_invoices.invoice_ref ='$ref'";
 	
 	$resultv =  mysqli_query($conn,$sqlv) or die(mysqli_errno());
 	$rowv = mysqli_fetch_array($resultv);
