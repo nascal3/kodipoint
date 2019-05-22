@@ -131,7 +131,7 @@
 				<table>
 					<tr>
 						<th>Apartment Name</th>
-						<th>Apartment Name</th>
+						<th>House Number</th>
 						<th>Tenant Name</th>
 						<th>Tenant email</th>
 						<th>Rent</th>
@@ -146,8 +146,8 @@
 					echo "<tr>
 						<td>" . $row[14] . "</td>
 						<td>" . $row[4] . "</td>
-						<td>" . $row[26] . "</td>
 						<td>" . $row[27] . "</td>
+						<td>" . $row[28] . "</td>
 						<td>" . $row[9] . "</td>
 						<td>" . $row[10] . "</td>
 						<td>" . $row[8] . "</td>
