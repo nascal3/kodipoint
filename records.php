@@ -42,7 +42,7 @@
 	<article>
 		<div class="row">
 			<div class="col-md-12">
-				<h3>Records</h2>
+				<h3>Records</h3>
 			</div>
 		</div>
 	</article>
