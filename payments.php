@@ -60,25 +60,25 @@
 				<th>Status</th>
 			</tr>
 			<?php 
-						$sqlx = "SELECT re_invoices.invoice_ref, re_invoices.date_issued,re_invoices.date_paid, re_invoices.costs, re_invoices.pay_status, re_properties.property_name, re_tenant.unit_no, re_tenant.name, re_tenant.id FROM re_invoices LEFT JOIN (re_properties,re_invoicing, re_tenant) ON re_properties.id = re_invoices.property_id AND re_invoices.tenant_id = re_tenant.id AND re_invoicing.tenant_id = re_invoices.tenant_id WHERE re_properties.landlord = '$current_user' AND re_invoices.pay_status= 1";
-						$resultx = mysqli_query($conn,$sqlx) or die(mysqli_error()); 
-						
-						if(!$rowx = mysqli_num_rows($resultx) == 0){
-						while($rowx = mysqli_fetch_array($resultx)){
-							echo "<tr>
-									<td>" .$rowx['invoice_ref']. "</td>
-									<td>" .$rowx['name']. "</td>
-									<td>" .$rowx['property_name']. "</td>
-									<td>" .$rowx['costs']. "</td>
-									<td>" .$rowx['date_issued']. "</td>
-									<td>" .$rowx['date_paid']. "</td>";
-									if($rowx['pay_status']==1){echo "<td><span class='greenfont'>paid</span></td>"; }if($rowx['pay_status']==0){ echo "<td><span class='redfont'>not paid</span></td>";}if($rowx['pay_status']==3){ echo "<td><span class='redfont'>Payed Less</span></td>";};
-									
-							echo "</tr>";
-								
-						}
-						}else{ echo "<p>No Payments Made!</p>";}
-					?>
+                $sqlx = "SELECT re_invoices.invoice_ref, re_invoices.date_issued,re_invoices.date_paid, re_invoices.costs, re_invoices.pay_status, re_properties.property_name, re_tenant.unit_no, re_tenant.name, re_tenant.id FROM re_invoices LEFT JOIN (re_properties,re_invoicing, re_tenant) ON re_properties.id = re_invoices.property_id AND re_invoices.tenant_id = re_tenant.id AND re_invoicing.tenant_id = re_invoices.tenant_id WHERE re_properties.landlord = '$current_user' AND re_invoices.pay_status= 1";
+                $resultx = mysqli_query($conn,$sqlx) or die(mysqli_error());
+
+                if(!$rowx = mysqli_num_rows($resultx) == 0){
+                while($rowx = mysqli_fetch_array($resultx)){
+                    echo "<tr>
+                            <td>" .$rowx['invoice_ref']. "</td>
+                            <td>" .$rowx['name']. "</td>
+                            <td>" .$rowx['property_name']. "</td>
+                            <td>" .$rowx['costs']. "</td>
+                            <td>" .$rowx['date_issued']. "</td>
+                            <td>" .$rowx['date_paid']. "</td>";
+                            if($rowx['pay_status']==1){echo "<td><span class='greenfont'>paid</span></td>"; }if($rowx['pay_status']==0){ echo "<td><span class='redfont'>not paid</span></td>";}if($rowx['pay_status']==3){ echo "<td><span class='redfont'>Payed Less</span></td>";};
+
+                    echo "</tr>";
+
+                }
+                }else{ echo "<p>No Payments Made!</p>";}
+            ?>
 		</table>
 	</article>
 </div>
