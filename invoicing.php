@@ -187,7 +187,7 @@
 			})
 			};
 	});
-	$('#tena').on('change', function() {
+	$('#prop').on('change', function() {
 			var tena = this.value;
 			var url = "components/getpropdetail.php";
 			if(!tena==''){
