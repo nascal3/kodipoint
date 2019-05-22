@@ -9,7 +9,7 @@
         $user_password=$_REQUEST['user_password'];
 		$user_password= base64_encode(hash('sha256',$user_password));
 
-        $sql="INSERT INTO re_users(user_email,user_password) VALUES('$user_email','$user_password')";
+        $sql="INSERT INTO re_users(user_email,role,user_password) VALUES('$user_email',2,'$user_password')";
         mysqli_query($conn,$sql) or die(mysqli_error($conn));
 
 		$sql2="SELECT id FROM re_users WHERE user_email = '$user_email'";
