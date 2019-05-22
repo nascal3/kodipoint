@@ -27,7 +27,7 @@
         $trws = mysqli_num_rows($result);
         if($trws==1){
             $rws =  mysqli_fetch_array($result);
-            $_SESSION['userid']=$rws['user_id'];
+            $_SESSION['userid']=$rws['id'];
             $_SESSION['usertype']=$rws['role'];
 		
 				if( $_SESSION['usertype'] == 2){
