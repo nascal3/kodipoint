@@ -1,4 +1,4 @@
 <?php
     header( "refresh:1;url=../login.php" ); 
-    echo "<center><h2>Wrong Username or Password. Redirecting shortly!</h2></center>";
+    echo "<h2 align='center'>Wrong Username or Password. Redirecting shortly!</h2>";
 ?>
