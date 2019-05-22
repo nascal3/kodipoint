@@ -2,9 +2,11 @@
 <?php include 'components/session-check.php' ?>  
 <?php include 'components/tenant_check.php' ?>  
 
-<?php 
-    $user_id = mysqli_real_escape_string($conn,$_REQUEST['profile']);
-    $profile_username=$rws['username'];
+<?php
+    if (isset($_REQUEST['profile'])) {
+        $user_email = mysqli_real_escape_string($conn,$_REQUEST['profile']);
+    }
+//    $profile_username=$rws['username'];
 ?>
 <?php
     $url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
@@ -48,7 +50,7 @@
 			<div class="col-md-9">
 				<h3>Properties Leased</h3>
 				<?php 
-					$sql = "SELECT * FROM re_propertytenant LEFT JOIN (re_properties) ON re_propertytenant.tenant_id = '$current_user' AND re_properties.id = re_propertytenant.property_id WHERE re_propertytenant.tenant_id = '$current_user'";
+					$sql = "SELECT * FROM re_properties LEFT JOIN (re_tenant) ON re_properties.id = re_tenant.property_id WHERE re_tenant.user_id = '$current_user'";
 					$result=  mysqli_query($conn,$sql) or die(mysqli_errno());
 					if ($result==""){
 					echo "No records added...";
