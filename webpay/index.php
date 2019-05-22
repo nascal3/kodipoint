@@ -1,12 +1,9 @@
-<?php
-    ob_start();
-    session_start();
-    session_regenerate_id();
-    $new_sessionid = session_id();
-	include '../_database/database.php';
-    $current_user=$_SESSION['user_username'];
+<?php include 'components/authentication.php' ?>
+<?php include 'components/session-check.php' ?>
+<?php include 'components/landlord_check.php' ?>
 
-    $sql1="SELECT * FROM re_tenant WHERE landlord='$current_user'";
+<?php
+    $sql1="SELECT * FROM re_tenant WHERE landlord_id='$current_user'";
     $result1 = mysqli_query($conn,$sql1) or die(mysqli_error());
 
 ?>
@@ -48,11 +45,11 @@
 		<div class="row">
 			<div class="col-md-6">
                 <select name="customerName" id="prop" >
-                    <option>Customer Name...</option>
+                    <option>Select Customer...</option>
                     <?php
                     while($row = mysqli_fetch_array($result1)){
 
-                        echo "<option value='" . $row['id'] ."'>". $row['property_name'] ."</option>";
+                        echo "<option value='" . $row['id'] ."'>". $row['name'] ."</option>";
                     }?>
                 </select>
 			</div>
@@ -106,7 +103,7 @@
 			echo "<td>" . $row['trans_customername'] ."</td>";
 			echo "<td>" . $row['trans_amount'] ."</td>";
 			echo "<td>" . $row['trans_time'] ."</td>";
-			echo "<td><a href='view_property.php?prop=" . $row['id'] ."'><i class='fa fa-eye' aria-hidden='true'></i></a></td>";
+			echo "<td><a href='../payments.php'><i class='fa fa-eye' aria-hidden='true'></i></a></td>";
 		echo "</tr>";
 		
 		};

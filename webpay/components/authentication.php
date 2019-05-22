@@ -4,6 +4,6 @@
     session_regenerate_id();
 	$new_sessionid = session_id();
 	
-    require '_database/database.php';
+    require '../_database/database.php';
     $current_user = $_SESSION['userid'];
 ?>
