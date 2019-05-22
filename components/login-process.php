@@ -28,12 +28,12 @@
         if($trws==1){
             $rws =  mysqli_fetch_array($result);
             $_SESSION['userid']=$rws['user_id'];
-            $_SESSION['usertype']=$rws['user_type'];
+            $_SESSION['usertype']=$rws['role'];
 		
-				if( $_SESSION['usertype'] == "landlord"){
+				if( $_SESSION['usertype'] == 2){
 				header("location:../landlord_profile.php?profile=$username&request=login&status=success");    
 				}
-				if( $_SESSION['usertype'] == "tenant"){
+				if( $_SESSION['usertype'] == 1){
 				header("location:../tenant_profile.php?profile=$username&request=login&status=success");    
 				}
 			}
