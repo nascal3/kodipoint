@@ -42,7 +42,7 @@
 	<article>
 		<div class="row">
 			<div class="col-md-12">
-				<h3>Payments</h2>
+				<h3>Payments</h3>
 			</div>
 		</div>
 	</article>
@@ -60,7 +60,7 @@
 				<th>Status</th>
 			</tr>
 			<?php 
-						$sqlx = "SELECT re_invoices.invoice_ref, re_invoices.date_issued,re_invoices.date_paid, re_invoices.costs, re_invoices.pay_status, re_properties.property_name, re_propertytenant.unit_no, re_tenant.name, re_tenant.id FROM re_invoices LEFT JOIN (re_properties,re_propertytenant, re_invoicing, re_tenant) ON re_properties.id = re_invoices.property_id AND re_invoices.tenant_id = re_propertytenant.tenant_id AND re_invoices.tenant_id = re_tenant.id AND re_invoicing.tenant_id = re_invoices.tenant_id WHERE re_properties.landlord = '$current_user' AND re_invoices.pay_status= 1";
+						$sqlx = "SELECT re_invoices.invoice_ref, re_invoices.date_issued,re_invoices.date_paid, re_invoices.costs, re_invoices.pay_status, re_properties.property_name, re_tenant.unit_no, re_tenant.name, re_tenant.id FROM re_invoices LEFT JOIN (re_properties,re_invoicing, re_tenant) ON re_properties.id = re_invoices.property_id AND re_invoices.tenant_id = re_tenant.id AND re_invoicing.tenant_id = re_invoices.tenant_id WHERE re_properties.landlord = '$current_user' AND re_invoices.pay_status= 1";
 						$resultx = mysqli_query($conn,$sqlx) or die(mysqli_error()); 
 						
 						if(!$rowx = mysqli_num_rows($resultx) == 0){
