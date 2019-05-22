@@ -4,13 +4,7 @@
 	
 	if(!$tenx==""){
 
-		
-		$sql="SELECT tenant_id FROM re_propertytenant WHERE tenant_id='$tenx'";
-		$result =  mysqli_query($conn,$sql) or die(mysqli_errno());
-		$rws = mysqli_fetch_array($result);
-		
-		if(!$rws==""){	
-			$sql2="SELECT unit_no FROM re_tenant LEFT JOIN (re_propertytenant,re_properties) ON re_propertytenant.tenant_id = re_tenant.id AND re_propertytenant.property_id = re_properties.id WHERE re_tenant.id='$tenx'";
+			$sql2="SELECT unit_no FROM re_tenant WHERE id='$tenx'";
 
 			if(!$sql2==""){
 			$result2 =  mysqli_query($conn,$sql2) or die(mysqli_errno());
@@ -23,10 +17,6 @@
 				$report = "fail";
 				print_r($report);
 			}
-		}else{
-			$report = "fail";
-			print_r($report);	
-		}
 	}else{
 		$report = "fail";
 		print_r($report);
