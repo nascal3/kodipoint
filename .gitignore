@@ -1,3 +1,10 @@
 # Editor directories and files
 .idea
-userfiles/avatars
+
+#photo upload files
+userfiles/avatars/
+
+#error log files
+components/error_log
+error_log
+extra/
