@@ -72,7 +72,7 @@
 				</div>
 				<div class="col-md-4">
 					<p>Select Unit:</p>
-					<select name="unitno" id="unitno" disabled="disabled">
+					<select name="unitno" id="unitno" >
 						<option>...</option>
 					</select>
 				</div>
