@@ -27,9 +27,9 @@ session_start();
 				$ratemath = ($taxratex + 100)/100;
 				$total_rent= $amoutrent + $otherfeesx;
 				$total_rent = $total_rent * $ratemath;
-		}else{
-			$total_rent= $amoutrent + $otherfeesx;
-		};
+			}else{
+				$total_rent= $amoutrent + $otherfeesx;
+			}
 			return $total_rent;
 		};
 		
@@ -41,9 +41,9 @@ session_start();
 		$row = mysqli_num_rows($result);
 		if(!$row==1){
 		
-		$sql="INSERT INTO re_invoicing(property_id,tenant_id,landlord_id,unit_no,invoice_code,frequency,last_pay_date,tax_rate,rent,other_charges,desciption,total_amount) VALUES ('$propertyid','$tenantid','$landlordid','$unitno','$invoice_code','$frequency','','$taxrate','$rent','$otherfees','$description','$totalamt')";
-        mysqli_query($conn,$sql) or die(mysqli_error($conn));
-		header('Location: ../invoicing.php');
+			$sql="INSERT INTO re_invoicing(property_id,tenant_id,landlord_id,unit_no,invoice_code,frequency,last_pay_date,tax_rate,rent,other_charges,desciption,total_amount) VALUES ('$propertyid','$tenantid','$landlordid','$unitno','$invoice_code','$frequency','','$taxrate','$rent','$otherfees','$description','$totalamt')";
+			mysqli_query($conn,$sql) or die(mysqli_error($conn));
+			header('Location: ../invoicing.php');
 		}else{
 			header('Location: ../invoicing.php?error=change_unit');
 		}
