@@ -23,6 +23,10 @@ session_start();
 		};
 
 		function rentmath($amoutrent,$otherfeesx,$taxratex){
+		    if (empty($otherfeesx)) { $otherfeesx = 0 ;}
+		    if (empty($taxratex)) { $taxratex = 0 ;}
+		    if (empty($amoutrent)) { $amoutrent = 0 ;}
+
 			if(!$taxratex==""){
 				$ratemath = ($taxratex + 100)/100;
 				$total_rent= $amoutrent + $otherfeesx;
@@ -36,7 +40,7 @@ session_start();
 		$totalamt = rentmath( $rent,$otherfees,$taxrate);
 		$invoice_code = generateRandomString(6);
 		
-		$sql2 = "SELECT unit_no FROM re_invoicing WHERE unit_no = '$unitno'"; 
+		$sql2 = "SELECT unit_no FROM re_invoicing WHERE landlord_id = '$landlordid' AND property_id = '$propertyid' AND unit_no = '$unitno'";
 		$result=mysqli_query($conn,$sql2) or die(mysqli_error($conn));
 		$row = mysqli_num_rows($result);
 		if(!$row==1){
@@ -45,7 +49,7 @@ session_start();
 			mysqli_query($conn,$sql) or die(mysqli_error($conn));
 			header('Location: ../invoicing.php');
 		}else{
-			header('Location: ../invoicing.php?error=change_unit');
+			header('Location: ../invoicing.php?error=change_unitx');
 		}
 		mysqli_close($conn);
 	}
