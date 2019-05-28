@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 28, 2019 at 02:06 PM
+-- Generation Time: May 28, 2019 at 02:43 PM
 -- Server version: 10.1.39-MariaDB
 -- PHP Version: 7.1.29
 
@@ -152,6 +152,7 @@ CREATE TABLE `re_payment` (
   `trans_narrative` varchar(200) DEFAULT '0',
   `trans_customername` char(200) NOT NULL DEFAULT '0',
   `tenant_id` int(11) NOT NULL,
+  `landlord_id` int(11) NOT NULL,
   `trans_status` char(50) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -159,9 +160,10 @@ CREATE TABLE `re_payment` (
 -- Dumping data for table `re_payment`
 --
 
-INSERT INTO `re_payment` (`id`, `trans_identify`, `trans_time`, `trans_amount`, `trans_accountno`, `trans_tel`, `trans_narrative`, `trans_customername`, `tenant_id`, `trans_status`) VALUES
-(3, '123abc', '2019/05/22 15:02', 18000, '0', '0718769663', '0', '6', 0, '1'),
-(4, '123abc', '2019/05/08 00:00', 18000, '0', '0718769663', '0', 'John Doe', 8, '1');
+INSERT INTO `re_payment` (`id`, `trans_identify`, `trans_time`, `trans_amount`, `trans_accountno`, `trans_tel`, `trans_narrative`, `trans_customername`, `tenant_id`, `landlord_id`, `trans_status`) VALUES
+(3, '123abc', '2019/05/22 15:02', 18000, '0', '0718769663', '0', '6', 0, 0, '1'),
+(4, '123abc', '2019/05/08 00:00', 18000, '0', '0718769663', '0', 'John Doe', 8, 0, '1'),
+(5, '123abc', '2019/05/28 15:38', 500, '0', '0718769663', '0', 'c/o Henry Omae', 10, 3, '1');
 
 -- --------------------------------------------------------
 
@@ -395,7 +397,7 @@ ALTER TABLE `re_notices`
 -- AUTO_INCREMENT for table `re_payment`
 --
 ALTER TABLE `re_payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `re_properties`
