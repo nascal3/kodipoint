@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 22, 2019 at 04:28 PM
+-- Generation Time: May 28, 2019 at 02:06 PM
 -- Server version: 10.1.39-MariaDB
 -- PHP Version: 7.1.29
 
@@ -67,7 +67,9 @@ CREATE TABLE `re_invoicing` (
 
 INSERT INTO `re_invoicing` (`in_id`, `property_id`, `tenant_id`, `landlord_id`, `unit_no`, `invoice_code`, `frequency`, `last_pay_date`, `tax_rate`, `rent`, `other_charges`, `desciption`, `total_amount`) VALUES
 (1, 1, 8, 1, '2', 'FCXTV8', 'monthly', 0, 10, 20000, 0, '500', 22000),
-(3, 1, 6, 1, '4', 'HDRH94', 'monthly', 0, 10, 3000, 500, 'trash', 3850);
+(3, 1, 6, 1, '4', 'HDRH94', 'monthly', 0, 10, 3000, 500, 'trash', 3850),
+(4, 3, 9, 3, '1', 'IG5WZK', 'monthly', 0, 0, 18000, 0, '', 18000),
+(5, 3, 10, 3, '2', 'BT1PYX', 'monthly', 0, 12, 500, 0, '', 560);
 
 -- --------------------------------------------------------
 
@@ -114,7 +116,8 @@ CREATE TABLE `re_landlords` (
 --
 
 INSERT INTO `re_landlords` (`id`, `user_id`, `firstname`, `lastname`, `lastlogin`, `email`, `address_box`, `kra_pin`, `telephone`, `avatar`, `bank_name`, `bank_branch`, `bank_account`, `bank_swift`, `bank_currency`) VALUES
-(1, 1, 'Caleb', 'Nasio', NULL, 'nascal3@gmail.com', NULL, NULL, '0718769663', 'default_person.jpg', 'Equty', 'Ongata rongai', '1234567', '00200', 'Ksh');
+(1, 1, 'Caleb', 'Nasio', NULL, 'nascal3@gmail.com', NULL, NULL, '0718769663', 'default_person.jpg', 'Equty', 'Ongata rongai', '1234567', '00200', 'Ksh'),
+(2, 3, 'Henry', 'Omae', NULL, 'peaceomai@gmail.com', NULL, NULL, '0720202551', 'default_person.jpg', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -187,7 +190,8 @@ CREATE TABLE `re_properties` (
 
 INSERT INTO `re_properties` (`id`, `property_name`, `country`, `property_type`, `location`, `contact_person`, `telephone`, `number_units`, `landlord`, `lr_no`, `property_img`, `description`) VALUES
 (1, 'Zuri', 'Kenya', 'Apartment', 'Nairobi', 'Caleb', '0718769663', 20, 1, 'xxx-123', 'default.jpg', ''),
-(2, 'Zubeida', 'Kenya', 'Apartment', 'Mombasa', 'Caleb', '0718769663', 20, 1, 'ccc-123456', 'default.jpg', '');
+(2, 'Zubeida', 'Kenya', 'Apartment', 'Mombasa', 'Caleb', '0718769663', 20, 1, 'ccc-123456', 'default.jpg', ''),
+(3, 'Henry Nyagaka Omae', 'Kajiado', 'Apartment', 'Ongata Rongai', 'Henry Nyagaka Omae', '0720202551', 2, 3, 'Ngong/Ngong/22829', 'default.jpg', 'Sololo Road opposite Laiser Hill');
 
 -- --------------------------------------------------------
 
@@ -252,7 +256,9 @@ CREATE TABLE `re_tenant` (
 INSERT INTO `re_tenant` (`id`, `user_id`, `name`, `email`, `tenantid`, `property_id`, `property_name`, `unit_no`, `landlord_id`, `move_in_date`, `telephone`, `postal_address`, `avatar`) VALUES
 (6, NULL, 'Jane Doe', 'jane@mail.com', '464646', 1, 'Zuri', '4', 1, '0000-00-00', NULL, NULL, NULL),
 (7, NULL, 'Cleo Monyo', 'cleo@mail.com', '90890987', 2, 'Zubeida', '1', 1, '2018-02-03', NULL, NULL, NULL),
-(8, 2, 'John Doe', 'john@mail.com', '878687', 1, 'Zuri', '2', 1, '2019-05-01', '0718769663', NULL, NULL);
+(8, 2, 'John Doe', 'john@mail.com', '878687', 1, 'Zuri', '2', 1, '2019-05-01', '0718769663', NULL, NULL),
+(9, NULL, 'Pastor Steve Mwaniki', '', '', 3, 'Henry Nyagaka Omae', '1', 3, '2018-05-25', NULL, NULL, NULL),
+(10, NULL, 'c/o Henry Omae', '', '', 3, 'Henry Nyagaka Omae', '2', 3, '2018-05-25', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -275,7 +281,8 @@ CREATE TABLE `re_users` (
 
 INSERT INTO `re_users` (`id`, `user_email`, `role`, `user_password`, `date_entered`, `last_login`) VALUES
 (1, 'nascal3@gmail.com', 2, 'OGQ5NjllZWY2ZWNhZDNjMjlhM2E2MjkyODBlNjg2Y2YwYzNmNWQ1YTg2YWZmM2NhMTIwMjBjOTIzYWRjNmM5Mg==', '2019-05-21 09:39:36', NULL),
-(2, 'john@mail.com', 1, 'OGQ5NjllZWY2ZWNhZDNjMjlhM2E2MjkyODBlNjg2Y2YwYzNmNWQ1YTg2YWZmM2NhMTIwMjBjOTIzYWRjNmM5Mg==', '2019-05-22 13:36:36', NULL);
+(2, 'john@mail.com', 1, 'OGQ5NjllZWY2ZWNhZDNjMjlhM2E2MjkyODBlNjg2Y2YwYzNmNWQ1YTg2YWZmM2NhMTIwMjBjOTIzYWRjNmM5Mg==', '2019-05-22 13:36:36', NULL),
+(3, 'peaceomai@gmail.com', 2, 'OGQ5NjllZWY2ZWNhZDNjMjlhM2E2MjkyODBlNjg2Y2YwYzNmNWQ1YTg2YWZmM2NhMTIwMjBjOTIzYWRjNmM5Mg==', '2019-05-26 20:26:29', NULL);
 
 --
 -- Indexes for dumped tables
@@ -292,8 +299,7 @@ ALTER TABLE `re_invoices`
 -- Indexes for table `re_invoicing`
 --
 ALTER TABLE `re_invoicing`
-  ADD PRIMARY KEY (`in_id`),
-  ADD UNIQUE KEY `unit_no` (`unit_no`);
+  ADD PRIMARY KEY (`in_id`);
 
 --
 -- Indexes for table `re_ipn`
@@ -342,8 +348,7 @@ ALTER TABLE `re_site_admin`
 -- Indexes for table `re_tenant`
 --
 ALTER TABLE `re_tenant`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `re_users`
@@ -366,7 +371,7 @@ ALTER TABLE `re_invoices`
 -- AUTO_INCREMENT for table `re_invoicing`
 --
 ALTER TABLE `re_invoicing`
-  MODIFY `in_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `in_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `re_ipn`
@@ -378,7 +383,7 @@ ALTER TABLE `re_ipn`
 -- AUTO_INCREMENT for table `re_landlords`
 --
 ALTER TABLE `re_landlords`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `re_notices`
@@ -396,7 +401,7 @@ ALTER TABLE `re_payment`
 -- AUTO_INCREMENT for table `re_properties`
 --
 ALTER TABLE `re_properties`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `re_roles`
@@ -414,13 +419,13 @@ ALTER TABLE `re_site_admin`
 -- AUTO_INCREMENT for table `re_tenant`
 --
 ALTER TABLE `re_tenant`
-  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `re_users`
 --
 ALTER TABLE `re_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
