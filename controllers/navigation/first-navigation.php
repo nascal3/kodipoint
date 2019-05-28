@@ -1,5 +1,5 @@
 <?php
-    $sqlnav = "SELECT * FROM re_landlords WHERE id='$current_user'";
+    $sqlnav = "SELECT * FROM re_landlords WHERE user_id='$current_user'";
     $result = mysqli_query($conn,$sqlnav);
     while($row = mysqli_fetch_array($result)) {
 ?>
