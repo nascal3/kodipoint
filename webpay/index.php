@@ -68,6 +68,7 @@
 			</div>
 			<div class="col-md-6">
 				<input type="text" id="datetime" name="timeStamp" placeholder="Date Time" />
+				<input type="text" value="<?php echo $current_user ?>" name="landlord_id" hidden />
 			</div>
 
 		</div>
@@ -81,7 +82,7 @@
 <div class="col-md-5">
 	<h3>Recent Payments</h3>
 <?php 
-	$sql="SELECT * FROM re_payment";
+	$sql="SELECT * FROM re_payment WHERE landlord_id = '$current_user'";
 		$result=  mysqli_query($conn,$sql) or die(mysqli_errno());
 		if ($result==""){
 		echo "No records added...";
