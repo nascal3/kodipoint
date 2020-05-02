@@ -31,7 +31,10 @@
 		<div class="bannerdesc">
 			<p class="aligncenter"><span>Ready for an upgrade?</span><br /> You are just a step away from a satisfying, stress free, rent-payment lifestyle...<br />"Oh yes, that's exactly what I need!" </p><br />
 			<p class="aligncenter">I am a:</p>
-			<p class="aligncenter"><a class="btn" href="register_landlord.php">Landlord</a>&nbsp;&nbsp;&nbsp;<a class="btn" href="register_tenant.php">Tenant</a></p>
+			<p class="aligncenter">
+				<a class="btn" href="https://www.kodipoint.com/system/">Landlord</a>&nbsp;&nbsp;&nbsp;
+				<a class="btn" href="https://www.kodipoint.com/system/">Tenant</a>
+			</p>
 		</div>
 	</div>
 	<div class="container12 intro">
